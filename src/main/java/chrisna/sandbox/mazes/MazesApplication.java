@@ -1,5 +1,7 @@
 package chrisna.sandbox.mazes;
 
+import chrisna.sandbox.mazes.domain.Grid;
+import chrisna.sandbox.mazes.domain.algorithms.BinaryTree;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
@@ -21,7 +23,9 @@ public class MazesApplication implements CommandLineRunner {
     @Override
     public void run(String... args) {
         if (args.length > 0 && "cli".equals(args[0])) {
-            System.out.println("TODO generate maze...");
+            Grid grid = new Grid(4, 4);
+            BinaryTree.on(grid);
+            System.out.println(grid);
         }
     }
 }
