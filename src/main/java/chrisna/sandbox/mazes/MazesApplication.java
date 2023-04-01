@@ -36,6 +36,7 @@ public class MazesApplication implements CommandLineRunner {
             Grid grid = new Grid(row, col);
             Sidewinder.on(grid);
             System.out.println(grid);
+            grid.toPng("maze.png");
         }
     }
 }
