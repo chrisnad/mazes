@@ -1,0 +1,2 @@
+# mazes
+Maze Generator
