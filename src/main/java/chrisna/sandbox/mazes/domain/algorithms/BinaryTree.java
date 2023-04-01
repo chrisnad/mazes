@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BinaryTree {
-
     private static final Random rand = new Random();
-
     private BinaryTree() {}
 
     public static void on(Grid grid) {
