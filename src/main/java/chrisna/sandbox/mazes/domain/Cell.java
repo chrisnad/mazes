@@ -1,9 +1,14 @@
 package chrisna.sandbox.mazes.domain;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "id")
 public class Cell {
+
     private final int row, column;
     private final Set<Cell> links;
     public Cell north, south, east, west;
