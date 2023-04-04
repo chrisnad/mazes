@@ -9,7 +9,7 @@ prerequisites:
 
 build with Maven: `mvn -Pnative spring-boot:build-image `
 
-running the app: `docker run -it -ePORT=8080 -p8080:8080 mazes:0.0.1-SNAPSHOT ` 
+running the app: `docker run -it -ePORT=8080 -p8080:8080 mazes:1.0 ` 
 
 ## Native CNB from jar
 
