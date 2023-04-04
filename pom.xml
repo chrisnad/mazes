@@ -13,7 +13,7 @@
 	<artifactId>mazes</artifactId>
 	<version>1.0</version>
 	<name>mazes</name>
-	<description>Maze Generator</description>
+	<description>A Maze Generator</description>
 
 	<properties>
 		<java.version>17</java.version>
@@ -65,6 +65,11 @@
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
