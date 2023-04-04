@@ -4,14 +4,19 @@ import chrisna.sandbox.mazes.api.MazesService;
 import chrisna.sandbox.mazes.api.RenderingService;
 import chrisna.sandbox.mazes.domain.Grid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.MediaType;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/mazes")
@@ -33,17 +38,23 @@ public class MazesHttpApi {
     }
 
     @GetMapping(path = "/mazeImg", produces = MediaType.IMAGE_PNG_VALUE)
-    public BufferedImage generateImg(
+    public Mono<DataBuffer> generateImg(
+            ServerHttpResponse response,
             @RequestParam int rows,
             @RequestParam int columns,
             @RequestParam(defaultValue = "bt") String algo,
-            @RequestParam(defaultValue = "16") int scale) {
-        return switch (algo) {
+            @RequestParam(defaultValue = "16") int scale) throws IOException {
+        RenderedImage img = switch (algo) {
             case "bt" -> renderingService.getBufferedImage(
                     mazesService.binaryTree(rows, columns), scale);
             default -> renderingService.getBufferedImage(
                     mazesService.sidewinder(rows, columns), scale);
         };
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, "png", baos);
+        baos.close();
+        DataBuffer imageData = response.bufferFactory().wrap(baos.toByteArray());
+        return Mono.just(imageData);
     }
 
 }

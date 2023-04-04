@@ -1,8 +1,10 @@
 package chrisna.sandbox.mazes;
 
+import chrisna.sandbox.mazes.api.RenderingService;
 import chrisna.sandbox.mazes.domain.Grid;
 import chrisna.sandbox.mazes.domain.algorithms.BinaryTree;
 import chrisna.sandbox.mazes.domain.algorithms.Sidewinder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
@@ -21,6 +23,9 @@ import java.util.stream.Collectors;
 @SpringBootApplication
 public class MazesApplication implements CommandLineRunner {
 
+    @Autowired
+    private RenderingService renderingService;
+
     @Bean
     public HttpMessageConverter<BufferedImage> bufferedImageHttpMessageConverter() {
         return new BufferedImageHttpMessageConverter();
@@ -32,8 +37,6 @@ public class MazesApplication implements CommandLineRunner {
             appBuilder.web(WebApplicationType.NONE)
                     .bannerMode(Banner.Mode.OFF)
                     .logStartupInfo(false);
-        if (args.length > 0 && "mvc".equals(args[0]))
-            appBuilder.web(WebApplicationType.SERVLET);
         appBuilder.build().run(args);
     }
 
@@ -47,12 +50,13 @@ public class MazesApplication implements CommandLineRunner {
             int rows = Integer.parseInt(argsMap.getOrDefault(2, "4"));
             int columns = Integer.parseInt(argsMap.getOrDefault(3, "4"));
 
-            Grid grid = new Grid(rows, columns);
+            Grid maze = new Grid(rows, columns);
             switch (algo) {
-                case "bt" -> BinaryTree.on(grid);
-                default -> Sidewinder.on(grid);
+                case "bt" -> BinaryTree.on(maze);
+                default -> Sidewinder.on(maze);
             }
-            System.out.println(grid);
+            System.out.println(maze);
+            renderingService.toPng(maze, "maze.png");
         }
     }
 }
