@@ -1,6 +1,5 @@
 package chrisna.sandbox.mazes;
 
-import chrisna.sandbox.mazes.api.RenderingService;
 import chrisna.sandbox.mazes.domain.Grid;
 import chrisna.sandbox.mazes.domain.algorithms.BinaryTree;
 import chrisna.sandbox.mazes.domain.algorithms.Sidewinder;
@@ -32,7 +31,5 @@ public class MazesApplicationCli implements CommandLineRunner {
             default -> Sidewinder.on(maze);
         }
         System.out.println(maze);
-        RenderingService rs = new RenderingService();
-        rs.toPng(maze, "maze.png");
     }
 }
