@@ -2,7 +2,9 @@ package chrisna.sandbox.mazes.api.http;
 
 import chrisna.sandbox.mazes.api.MazesService;
 import chrisna.sandbox.mazes.api.RenderingService;
+import chrisna.sandbox.mazes.domain.Cell;
 import chrisna.sandbox.mazes.domain.Grid;
+import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.MediaType;
@@ -27,6 +29,7 @@ public class MazesHttpApi {
     RenderingService renderingService;
 
     @GetMapping("/maze")
+    @RegisterReflectionForBinding({Grid.class, Cell.class})  // register hints for Grid and Cell
     public Mono<Grid> generateGrid(
             @RequestParam int rows,
             @RequestParam int columns,

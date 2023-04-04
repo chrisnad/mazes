@@ -1,6 +1,8 @@
 package chrisna.sandbox.mazes.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,15 +39,15 @@ public class Cell {
         if (bidirectional) cell.unlink(this, false);
     }
 
-    public int row() {
+    public int getRow() {
         return row;
     }
 
-    public int column() {
+    public int getColumn() {
         return column;
     }
 
-    public Set<Cell> links() {
+    public Set<Cell> getLinks() {
         return links;
     }
 
@@ -53,7 +55,7 @@ public class Cell {
         return new Neighbors(north, south, east, west);
     }
 
-    record Neighbors(Cell north, Cell south, Cell east, Cell west){
+    record Neighbors(Cell north, Cell south, Cell east, Cell west) {
         public int length() {
             int len = 0;
             if (north != null) len++;

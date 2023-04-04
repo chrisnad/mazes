@@ -12,7 +12,7 @@ public class Sidewinder {
     private Sidewinder() {}
 
     public static void on(Grid grid) {
-        for (Cell[] row : grid.cells()) {
+        for (Cell[] row : grid.getCells()) {
             List<Cell> run = new ArrayList<>();
             for (Cell cell : row) {
                 run.add(cell);

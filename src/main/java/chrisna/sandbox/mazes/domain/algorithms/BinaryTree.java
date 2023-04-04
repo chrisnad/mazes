@@ -13,7 +13,7 @@ public class BinaryTree {
     private BinaryTree() {}
 
     public static void on(Grid grid) {
-        Arrays.stream(grid.cells())
+        Arrays.stream(grid.getCells())
                 .flatMap(Arrays::stream)
                 .forEach(cell -> {
                             List<Cell> neighbors = new ArrayList<>();

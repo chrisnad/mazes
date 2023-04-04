@@ -44,11 +44,11 @@ public class RenderingService {
     }
 
     private BufferedImage unsafeBufferedImage(Grid maze, int scale) {
-        int cols = maze.columns();
-        int rows = maze.rows();
+        int cols = maze.getColumns();
+        int rows = maze.getRows();
         int width = (2 * cols + 1) * scale;
         int height = (2 * rows + 1) * scale;
-        Cell[][] cells = maze.cells();
+        Cell[][] cells = maze.getCells();
         BufferedImage image = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB);
         for (int x = 0; x < width; x++) {
             int stepX = x;
@@ -67,7 +67,7 @@ public class RenderingService {
                 IntStream.range(0, scale)
                         .forEach(j -> IntStream.range(0, scale).forEach(i -> image.setRGB(x + scale + i, y + scale + j, DARK)));
 
-                if (cells[row][col].east == null || !cells[row][col].links().contains(cells[row][col + 1])) {
+                if (cells[row][col].east == null || !cells[row][col].getLinks().contains(cells[row][col + 1])) {
                     IntStream.range(0, scale)
                             .forEach(j -> IntStream.range(0, scale).forEach(i -> image.setRGB(x + scale + i, y + j, DARK)));
                 } else {
@@ -75,7 +75,7 @@ public class RenderingService {
                             .forEach(j -> IntStream.range(0, scale).forEach(i -> image.setRGB(x + scale + i, y + j, WHITE)));
                 }
 
-                if (cells[row][col].south == null || !cells[row][col].links().contains(cells[row + 1][col])) {
+                if (cells[row][col].south == null || !cells[row][col].getLinks().contains(cells[row + 1][col])) {
                     IntStream.range(0, scale)
                             .forEach(j -> IntStream.range(0, scale).forEach(i -> image.setRGB(x + i, y + scale + j, DARK)));
                 } else {

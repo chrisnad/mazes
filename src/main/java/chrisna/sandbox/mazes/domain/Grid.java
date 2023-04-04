@@ -9,20 +9,20 @@ import java.util.Random;
 public class Grid {
 
     private static final Random rand = new Random();
-    private final int rows, cols;
+    private final int rows, columns;
     private final Cell[][] cells;
 
-    public Grid(int rows, int cols) {
+    public Grid(int rows, int columns) {
         this.rows = rows;
-        this.cols = cols;
-        cells = new Cell[rows][cols];
+        this.columns = columns;
+        cells = new Cell[rows][columns];
         init();
         configureCells();
     }
 
     private void init() {
         for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
+            for (int col = 0; col < columns; col++) {
                 cells[row][col] = new Cell(row, col);
             }
         }
@@ -30,35 +30,35 @@ public class Grid {
 
     private void configureCells() {
         for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                if (row > 0) cells[row][col].north = cells[row - 1][col];
-                if (row + 1 < rows) cells[row][col].south = cells[row + 1][col];
-                if (col > 0) cells[row][col].west = cells[row][col - 1];
-                if (col + 1 < cols) cells[row][col].east = cells[row][col + 1];
+            for (int column = 0; column < columns; column++) {
+                if (row > 0) cells[row][column].north = cells[row - 1][column];
+                if (row + 1 < rows) cells[row][column].south = cells[row + 1][column];
+                if (column > 0) cells[row][column].west = cells[row][column - 1];
+                if (column + 1 < columns) cells[row][column].east = cells[row][column + 1];
             }
         }
     }
 
-    public int rows() {
+    public int getRows() {
         return rows;
     }
 
-    public int columns() {
-        return cols;
+    public int getColumns() {
+        return columns;
+    }
+
+    public Cell[][] getCells() {
+        return cells;
     }
 
     public int size() {
-        return rows * cols;
-    }
-
-    public Cell[][] cells() {
-        return cells;
+        return rows * columns;
     }
 
     public Cell randomCell() {
         int row = rand.nextInt(rows);
-        int col = rand.nextInt(cells[row].length);
-        return cells[row][col];
+        int column = rand.nextInt(cells[row].length);
+        return cells[row][column];
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Grid {
         StringBuilder output = new StringBuilder();
 
         output.append("+");
-        Collections.nCopies(cols, "---+").forEach(output::append);
+        Collections.nCopies(columns, "---+").forEach(output::append);
         output.append("\n");
 
         for (Cell[] row : cells) {
@@ -74,10 +74,10 @@ public class Grid {
             var bottom = new StringBuilder("+");
 
             for (Cell cell : row) {
-                var eastBoundary = cell.links().contains(cell.east) ? " " : "|";
+                var eastBoundary = cell.getLinks().contains(cell.east) ? " " : "|";
                 top.append("   ").append(eastBoundary);
 
-                var southBoundary = cell.links().contains(cell.south) ? "   " : "---";
+                var southBoundary = cell.getLinks().contains(cell.south) ? "   " : "---";
                 bottom.append(southBoundary).append("+");
             }
             output.append(top).append("\n");
