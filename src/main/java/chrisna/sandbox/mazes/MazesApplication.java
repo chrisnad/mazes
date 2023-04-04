@@ -1,62 +1,24 @@
 package chrisna.sandbox.mazes;
 
-import chrisna.sandbox.mazes.api.RenderingService;
-import chrisna.sandbox.mazes.domain.Grid;
-import chrisna.sandbox.mazes.domain.algorithms.BinaryTree;
-import chrisna.sandbox.mazes.domain.algorithms.Sidewinder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.BufferedImageHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
-
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
-public class MazesApplication implements CommandLineRunner {
-
-    @Autowired
-    private RenderingService renderingService;
-
-    @Bean
-    public HttpMessageConverter<BufferedImage> bufferedImageHttpMessageConverter() {
-        return new BufferedImageHttpMessageConverter();
-    }
+public class MazesApplication {
 
     public static void main(String[] args) {
-        SpringApplicationBuilder appBuilder = new SpringApplicationBuilder(MazesApplication.class);
-        if (args.length > 0 && "cli".equals(args[0]))
+        if ("yes".equals(System.getenv("MAZES_CLI"))) {
+            SpringApplicationBuilder appBuilder = new SpringApplicationBuilder(MazesApplicationCli.class);
             appBuilder.web(WebApplicationType.NONE)
                     .bannerMode(Banner.Mode.OFF)
                     .logStartupInfo(false);
-        appBuilder.build().run(args);
-    }
-
-    @Override
-    public void run(String... args) {
-        AtomicInteger i = new AtomicInteger();
-        Map<Integer, String> argsMap =
-                Arrays.stream(args).collect(Collectors.toMap(a -> i.getAndIncrement(), a -> a));
-        if (argsMap.size() > 0 && "cli".equals(argsMap.get(0))) {
-            String algo = argsMap.getOrDefault(1, "bt");
-            int rows = Integer.parseInt(argsMap.getOrDefault(2, "4"));
-            int columns = Integer.parseInt(argsMap.getOrDefault(3, "4"));
-
-            Grid maze = new Grid(rows, columns);
-            switch (algo) {
-                case "bt" -> BinaryTree.on(maze);
-                default -> Sidewinder.on(maze);
-            }
-            System.out.println(maze);
-            renderingService.toPng(maze, "maze.png");
+            appBuilder.build().run(args);
+        } else {
+            SpringApplication.run(MazesApplication.class, args);
         }
     }
+
 }
