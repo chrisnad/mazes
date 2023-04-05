@@ -59,7 +59,7 @@ docker run -it -ePORT=8080 -p8080:8080 mazes:cnb
 
 
 ## Native CNB
-build prerequisites: 
+prerequisites for subsequent builds: 
 * `docker (started with 4 CPU & 8Gb RAM)`
 * `java 22.3.1.r17-grl`
 
@@ -86,6 +86,18 @@ pack build --builder paketobuildpacks/builder:tiny \
     --path target/mazes-1.0-exec.jar \
     --env 'BP_NATIVE_IMAGE=true' \
     mazes:native-jar-cnb
+```
+
+
+## Native
+```shell
+docker build -f Docker/native.Dockerfile -t mazes:native .
+```
+
+
+## Native Compressed
+```shell
+docker build -f Docker/native-x.Dockerfile -t mazes:native-x .
 ```
 
 
