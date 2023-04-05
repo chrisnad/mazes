@@ -3,7 +3,7 @@ A Maze Generator
 
 
 ## JDK
-build docker image (30s):
+build docker image (50s):
 ```shell
 docker build -f Docker/jdk.Dockerfile -t mazes:jdk .
 ```
@@ -18,18 +18,29 @@ docker run -it -ePORT=8080 -eMAZES_CLI=yes -p8080:8080 mazes:jdk
 
 
 ## JRE
-build docker image (30s):
+build docker image (50s):
 ```shell
 docker build -f Docker/jre.Dockerfile -t mazes:jre .
 ```
 start the app:
 ```shell
-docker run -it -ePORT=8080 -p8080:8080 mazes:jib
+docker run -it -ePORT=8080 -p8080:8080 mazes:jre
+```
+
+
+## Custom JRE with Jlink
+build docker image (70s):
+```shell
+docker build -f Docker/custom-jre.Dockerfile -t mazes:custom-jre .
+```
+start the app:
+```shell
+docker run -it -ePORT=8080 -p8080:8080 mazes:custom-jre
 ```
 
 
 ## Jib
-build Docker Image (14s):
+build Docker Image (15s):
 ```shell
 ./mvnw compile jib:dockerBuild -Dimage=mazes:jib
 ```
@@ -43,7 +54,7 @@ docker run -it -ePORT=8080 -p8080:8080 mazes:jib
 build prerequisites:
 * `docker`
 
-build container image with spring-boot CNB plugin (18s): 
+build container image with spring-boot CNB plugin (55s): 
 ```shell
 ./mvnw clean spring-boot:build-image \
       -Dspring-boot.build-image.imageName=mazes:cnb
@@ -63,7 +74,7 @@ prerequisites for subsequent builds:
 * `docker (started with 4 CPU & 8Gb RAM)`
 * `java 22.3.1.r17-grl`
 
-build native container image with spring-boot CNB plugin (6m40s):
+build native container image with spring-boot CNB plugin (6m25s):
 ```shell
 ./mvnw clean spring-boot:build-image \
       -Pnative \
@@ -76,11 +87,11 @@ docker run -it -ePORT=8080 -p8080:8080 mazes:cnb-native
 
 
 ## Native CNB from jar
-build AOT processed Spring Boot executable jar:
+build AOT processed Spring Boot executable jar (6s):
 ```shell
 ./mvnw clean package
 ```
-then build with pack:
+then build with pack (6m40s):
 ```shell
 pack build --builder paketobuildpacks/builder:tiny \
     --path target/mazes-1.0-exec.jar \
@@ -90,12 +101,14 @@ pack build --builder paketobuildpacks/builder:tiny \
 
 
 ## Native
+build from Dockerfile (5m15s):
 ```shell
 docker build -f Docker/native.Dockerfile -t mazes:native .
 ```
 
 
 ## Native Compressed
+build from Dockerfile (6m20s):
 ```shell
 docker build -f Docker/native-x.Dockerfile -t mazes:native-x .
 ```

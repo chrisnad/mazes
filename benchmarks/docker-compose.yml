@@ -1,0 +1,64 @@
+version: '2.4'
+
+services:
+  # Apps
+  mazes-jdk:
+    image: mazes:jdk
+    container_name: mazes-jdk
+    command:
+      - "java"
+      - "-jar"
+      - "/mazes.jar"
+    ports:
+      - "8081:8080"
+  mazes-jre:
+    image: mazes:jre
+    container_name: mazes-jre
+    command:
+      - "java"
+      - "-jar"
+      - "/mazes.jar"
+    ports:
+      - "8082:8080"
+  mazes-custom-jre:
+    image: mazes:custom-jre
+    container_name: mazes-custom-jre
+    command:
+      - "java"
+      - "-jar"
+      - "/mazes.jar"
+    ports:
+      - "8083:8080"
+  mazes-jib:
+    image: mazes:jib
+    container_name: mazes-jib
+    ports:
+      - "8084:8080"
+  mazes-cnb:
+    image: mazes:cnb
+    container_name: mazes-cnb
+    ports:
+      - "8085:8080"
+  mazes-pack:
+    image: mazes:pack
+    container_name: mazes-pack
+    ports:
+      - "8086:8080"
+  mazes-cnb-native:
+    image: mazes:cnb-native
+    container_name: mazes-cnb-native
+    ports:
+      - "8087:8080"
+  mazes-native:
+    image: mazes:native
+    container_name: mazes-native
+    ports:
+      - "8088:8080"
+  mazes-native-x:
+    image: mazes:native-x
+    container_name: mazes-native-x
+    ports:
+      - "8089:8080"
+
+
+
