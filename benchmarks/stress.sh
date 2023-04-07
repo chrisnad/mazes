@@ -43,26 +43,26 @@ for p in {1..16}; do
 done
 echo -ne " DONE"
 
-JDK_LAT=`cat JDK.txt | sed 's/95% in //' | sed 's/ secs//'` && JDK_LAT=$((JDK_LAT * 1000))
-JRE_LAT=`cat JRE.txt | sed 's/95% in //' | sed 's/ secs//'` && JRE_LAT=$((JRE_LAT * 1000))
-JLINK_LAT=`cat JLINK.txt | sed 's/95% in //' | sed 's/ secs//'` && JLINK_LAT=$((JLINK_LAT * 1000))
-JIB_LAT=`cat JIB.txt | sed 's/95% in //' | sed 's/ secs//'   ` && JIB_LAT=$((JIB_LAT * 1000))
-CNB_LAT=`cat CNB.txt | sed 's/95% in //' | sed 's/ secs//'` && CNB_LAT=$((CNB_LAT * 1000))
-PACK_LAT=`cat PACK.txt | sed 's/95% in //' | sed 's/ secs//'` && PACK_LAT=$((PACK_LAT * 1000))
-NI_LAT=`cat NI.txt | sed 's/95% in //' | sed 's/ secs//'` && NI_LAT=$((NI_LAT * 1000))
-NI_CNB_LAT=`cat NI_CNB.txt | sed 's/95% in //' | sed 's/ secs//'` && NI_CNB_LAT=$((NI_CNB_LAT * 1000))
-NI_X_LAT=`cat NI_X.txt | sed 's/95% in //' | sed 's/ secs//'` && NI_X_LAT=$((NI_X_LAT * 1000))
+JDK_LAT=$( sed 's/95% in //' < JDK.txt | sed 's/ secs//') && JDK_LAT=$((JDK_LAT * 1000))
+JRE_LAT=$( sed 's/95% in //' < JRE.txt | sed 's/ secs//') && JRE_LAT=$((JRE_LAT * 1000))
+JLINK_LAT=$( sed 's/95% in //' < JLINK.txt | sed 's/ secs//') && JLINK_LAT=$((JLINK_LAT * 1000))
+JIB_LAT=$( sed 's/95% in //' < JIB.txt | sed 's/ secs//') && JIB_LAT=$((JIB_LAT * 1000))
+CNB_LAT=$( sed 's/95% in //' < CNB.txt | sed 's/ secs//') && CNB_LAT=$((CNB_LAT * 1000))
+PACK_LAT=$( sed 's/95% in //' < PACK.txt | sed 's/ secs//') && PACK_LAT=$((PACK_LAT * 1000))
+NI_LAT=$( sed 's/95% in //' < NI.txt | sed 's/ secs//') && NI_LAT=$((NI_LAT * 1000))
+NI_CNB_LAT=$( sed 's/95% in //' < NI_CNB.txt | sed 's/ secs//') && NI_CNB_LAT=$((NI_CNB_LAT * 1000))
+NI_X_LAT=$( sed 's/95% in //' < NI_X.txt | sed 's/ secs//') && NI_X_LAT=$((NI_X_LAT * 1000))
 
 
-JDK_REQS=`cat JDK_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-JRE_REQS=`cat JRE_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-JLINK_REQS=`cat JLINK_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-JIB_REQS=`cat JIB_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-CNB_REQS=`cat CNB_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-PACK_REQS=`cat PACK_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-NI_REQS=`cat NI_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-NI_CNB_REQS=`cat NI_CNB_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
-NI_X_REQS=`cat NI_X_ALL.txt | grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' | awk '{print $2}'`
+JDK_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < JDK_ALL.txt | awk '{print $2}')
+JRE_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < JRE_ALL.txt | awk '{print $2}')
+JLINK_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < JLINK_ALL.txt | awk '{print $2}')
+JIB_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < JIB_ALL.txt | awk '{print $2}')
+CNB_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < CNB_ALL.txt | awk '{print $2}')
+PACK_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < PACK_ALL.txt | awk '{print $2}')
+NI_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < NI_ALL.txt | awk '{print $2}')
+NI_CNB_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < NI_CNB_ALL.txt | awk '{print $2}')
+NI_X_REQS=$( grep -Eo '[[:space:]]+Requests/sec:[[:space:]][0-9]+.[0-9]+' < NI_X_ALL.txt | awk '{print $2}')
 
 echo "JDK           $JDK_LAT
       JRE           $JRE_LAT
