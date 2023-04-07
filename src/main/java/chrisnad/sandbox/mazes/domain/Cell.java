@@ -1,4 +1,4 @@
-package chrisna.sandbox.mazes.domain;
+package chrisnad.sandbox.mazes.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;

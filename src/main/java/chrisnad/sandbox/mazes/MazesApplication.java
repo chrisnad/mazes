@@ -1,4 +1,4 @@
-package chrisna.sandbox.mazes;
+package chrisnad.sandbox.mazes;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;

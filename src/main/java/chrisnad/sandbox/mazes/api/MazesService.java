@@ -1,8 +1,8 @@
-package chrisna.sandbox.mazes.api;
+package chrisnad.sandbox.mazes.api;
 
-import chrisna.sandbox.mazes.domain.Grid;
-import chrisna.sandbox.mazes.domain.algorithms.BinaryTree;
-import chrisna.sandbox.mazes.domain.algorithms.Sidewinder;
+import chrisnad.sandbox.mazes.domain.Grid;
+import chrisnad.sandbox.mazes.domain.algorithms.BinaryTree;
+import chrisnad.sandbox.mazes.domain.algorithms.Sidewinder;
 import org.springframework.stereotype.Service;
 
 @Service

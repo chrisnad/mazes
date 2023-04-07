@@ -1,7 +1,7 @@
-package chrisna.sandbox.mazes.domain.algorithms;
+package chrisnad.sandbox.mazes.domain.algorithms;
 
-import chrisna.sandbox.mazes.domain.Cell;
-import chrisna.sandbox.mazes.domain.Grid;
+import chrisnad.sandbox.mazes.domain.Cell;
+import chrisnad.sandbox.mazes.domain.Grid;
 
 import java.util.ArrayList;
 import java.util.Arrays;

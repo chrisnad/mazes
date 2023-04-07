@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>chrisna.sandbox</groupId>
+	<groupId>chrisnad.sandbox</groupId>
 	<artifactId>mazes</artifactId>
 	<version>1.0</version>
 	<name>mazes</name>

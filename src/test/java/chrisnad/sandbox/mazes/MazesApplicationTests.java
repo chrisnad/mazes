@@ -1,4 +1,4 @@
-package chrisna.sandbox.mazes;
+package chrisnad.sandbox.mazes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
-package chrisna.sandbox.mazes.api;
+package chrisnad.sandbox.mazes.api;
 
-import chrisna.sandbox.mazes.domain.Cell;
-import chrisna.sandbox.mazes.domain.Grid;
+import chrisnad.sandbox.mazes.domain.Cell;
+import chrisnad.sandbox.mazes.domain.Grid;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;

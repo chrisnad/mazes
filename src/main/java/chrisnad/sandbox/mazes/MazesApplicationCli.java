@@ -1,8 +1,8 @@
-package chrisna.sandbox.mazes;
+package chrisnad.sandbox.mazes;
 
-import chrisna.sandbox.mazes.domain.Grid;
-import chrisna.sandbox.mazes.domain.algorithms.BinaryTree;
-import chrisna.sandbox.mazes.domain.algorithms.Sidewinder;
+import chrisnad.sandbox.mazes.domain.Grid;
+import chrisnad.sandbox.mazes.domain.algorithms.BinaryTree;
+import chrisnad.sandbox.mazes.domain.algorithms.Sidewinder;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
 import org.springframework.stereotype.Component;
