@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 JAR_SIZE=$( wc -c ../target/mazes-1.0.jar | awk '{printf "%d", $1/1000000}' )
-NATIVE_EXE_SIZE=$( wc -c ../target/mazes | awk '{printf "%d", $1/1000000}' )
+NATIVE_EXE_SIZE=$( wc -c ../mazes | awk '{printf "%d", $1/1000000}' )
 JDK_IMG_SIZE=$(  docker inspect -f "{{ .Size }}" mazes:jdk | numfmt --to=si | sed 's/.$//' )
 JRE_IMG_SIZE=$(  docker inspect -f "{{ .Size }}" mazes:jre | numfmt --to=si | sed 's/.$//' )
 CUSTOM_JRE_IMG_SIZE=$( docker inspect -f "{{ .Size }}" mazes:custom-jre | numfmt --to=si | sed 's/.$//' )
