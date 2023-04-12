@@ -27,14 +27,14 @@ echo -ne "Stress Testing..."
 
 # Requests/sec:
 hey -z 15s -c 4 "http://localhost:8081/mazes/maze?rows=6&columns=9" | tee JDK_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JDK.txt &
-hey -z 15s -c 4 "http://localhost:8082/mazes/maze?rows=6&columns=9"/ | tee JRE_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JRE.txt &
-hey -z 15s -c 4 "http://localhost:8083/mazes/maze?rows=6&columns=9"/ | tee JLINK_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JLINK.txt &
-hey -z 15s -c 4 "http://localhost:8084/mazes/maze?rows=6&columns=9"/ | tee JIB_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JIB.txt &
-hey -z 15s -c 4 "http://localhost:8085/mazes/maze?rows=6&columns=9"/ | tee CNB_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > CNB.txt &
-hey -z 15s -c 4 "http://localhost:8086/mazes/maze?rows=6&columns=9"/ | tee PACK_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > PACK.txt &
-hey -z 15s -c 4 "http://localhost:8087/mazes/maze?rows=6&columns=9"/ | tee NI_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > NI.txt &
-hey -z 15s -c 4 "http://localhost:8088/mazes/maze?rows=6&columns=9"/ | tee NI_CNB_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > NI_CNB.txt &
-hey -z 15s -c 4 "http://localhost:8089/mazes/maze?rows=6&columns=9"/ | tee NI_X_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > NI_X.txt &
+hey -z 15s -c 4 "http://localhost:8082/mazes/maze?rows=6&columns=9" | tee JRE_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JRE.txt &
+hey -z 15s -c 4 "http://localhost:8083/mazes/maze?rows=6&columns=9" | tee JLINK_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JLINK.txt &
+hey -z 15s -c 4 "http://localhost:8084/mazes/maze?rows=6&columns=9" | tee JIB_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > JIB.txt &
+hey -z 15s -c 4 "http://localhost:8085/mazes/maze?rows=6&columns=9" | tee CNB_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > CNB.txt &
+hey -z 15s -c 4 "http://localhost:8086/mazes/maze?rows=6&columns=9" | tee PACK_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > PACK.txt &
+hey -z 15s -c 4 "http://localhost:8087/mazes/maze?rows=6&columns=9" | tee NI_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > NI.txt &
+hey -z 15s -c 4 "http://localhost:8088/mazes/maze?rows=6&columns=9" | tee NI_CNB_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > NI_CNB.txt &
+hey -z 15s -c 4 "http://localhost:8089/mazes/maze?rows=6&columns=9" | tee NI_X_ALL.txt | grep --color=auto -Eo '95% in [0-9]+.[0-9]+ secs' > NI_X.txt &
 
 # Progress bar
 for p in {1..16}; do
