@@ -13,7 +13,7 @@ docker run -it -ePORT=8080 -p8080:8080 mazes:jdk
 ```
 or run as cli:
 ```shell
-docker run -it -ePORT=8080 -eMAZES_CLI=yes -p8080:8080 mazes:jdk
+docker run -it -eMAZES_CLI=yes mazes:jdk
 ```
 
 
