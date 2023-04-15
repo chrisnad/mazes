@@ -12,15 +12,15 @@ PH_NATIVE=$(docker logs --tail 10 mazes-native | grep -Eo 'Started .+ in [0-9]+.
 PH_NATIVE_X=$(docker logs --tail 10 mazes-native-x | grep -Eo 'Started .+ in [0-9]+.[0-9]+ sec' | sed 's/[[:space:]]sec$//' | sed 's/.* //')
 
 # Convert to ms
-JDK_START=$(( PH_JDK * 1000 ))
-JRE_START=$(( PH_JRE * 1000 ))
-JLINK_START=$(( PH_JLINK * 1000 ))
-JIB_START=$(( PH_JIB * 1000 ))
-CNB_START=$(( PH_CNB * 1000 ))
-PACK_START=$(( PH_PACK * 1000 ))
-NATIVE_CNB_START=$(( PH_NATIVE_CNB * 1000 ))
-NATIVE_START=$(( PH_NATIVE * 1000 ))
-NATIVE_X_START=$(( PH_NATIVE_X * 1000 ))
+JDK_START=$((PH_JDK * 1000))
+JRE_START=$((PH_JRE * 1000))
+JLINK_START=$((PH_JLINK * 1000))
+JIB_START=$((PH_JIB * 1000))
+CNB_START=$((PH_CNB * 1000))
+PACK_START=$((PH_PACK * 1000))
+NATIVE_CNB_START=$((PH_NATIVE_CNB * 1000))
+NATIVE_START=$((PH_NATIVE * 1000))
+NATIVE_X_START=$((PH_NATIVE_X * 1000))
 
 # Display as a chart
 echo "JDK           $JDK_START
@@ -31,5 +31,5 @@ echo "JDK           $JDK_START
       PACK          $PACK_START
       Native-CNB    $NATIVE_CNB_START
       Native        $NATIVE_START
-      Native-x      $NATIVE_X_START" \
-      | termgraph --title "App Start Time" --width 60  --color cyan --suffix " ms"
+      Native-x      $NATIVE_X_START" |
+  termgraph --title "App Start Time" --width 60 --color cyan --suffix " ms"
